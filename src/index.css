@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* plus-jakarta-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/plus-jakarta-sans-v8-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* plus-jakarta-sans-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./fonts/plus-jakarta-sans-v8-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+.page {
+    width: 250px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.page:hover {
+    background-color: #E4EBFA;
+}
+
+.page.active {
+  background-color: #635FC7;
+  color: white;
+}
+
+.content {
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.content1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
