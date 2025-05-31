@@ -43,7 +43,7 @@ function Tasks({
             <div
               ref={provided.innerRef}
             {...provided.droppableProps}
-              className="w-full p-4 my-2 bg-white text-black rounded-xl text-center"
+              className="w-full p-4 my-2 bg-base-100 rounded-xl text-center"
           >
               No tasks
               {provided.placeholder}
@@ -68,14 +68,14 @@ function Tasks({
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className={`w-full p-4 my-2 bg-white rounded-xl shadow-sm hover:shadow-md transition relative group ${
+                    className={`w-full p-4 my-2 bg-base-100 rounded-xl shadow-sm hover:shadow-md transition relative group ${
                       snapshot.isDragging ? 'shadow-lg ring-2 ring-[#A8A4FF]' : ''
                     }`}
                   >
-                    <h3 className="font-semibold text-gray-800 group-hover:text-[#A8A4FF] transition-colors">
+                    <h3 className="font-semibold  group-hover:text-[#A8A4FF] transition-colors">
                       {task.title}
                     </h3>
-                    <p className="text-sm text-gray-500 mt-1 group-hover:text-[#A8A4FF] transition-colors">
+                    <p className="text-sm mt-1 group-hover:text-[#A8A4FF] transition-colors">
                     {`${task.subtasks?.filter((st) => st.completed).length || 0} of ${
                         task.subtasks?.length || 0
                       } subtasks`}
@@ -189,7 +189,7 @@ function Tasks({
 
           {columns.length < 5 && (
             <div
-              className="min-w-[300px] h-20 bg-blue-100 rounded-xl mt-8 flex items-center justify-center cursor-pointer hover:bg-blue-200 transition"
+              className="min-w-[300px] h-20 bg-base-100 rounded-xl mt-8 flex items-center justify-center cursor-pointer hover:bg-blue-950 transition"
               onClick={handleAddColumn}
             >
               <span className="text-blue-600 font-medium">+ Add New Column</span>

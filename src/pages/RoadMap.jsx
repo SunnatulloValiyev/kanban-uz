@@ -109,9 +109,9 @@ function RoadMap() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="flex justify-between items-center mb-8 p-10 bg-white">
-        <h1 className="text-3xl font-bold text-gray-800">Road Map</h1>
+    <div className="min-h-screen bg-base-300">
+      <div className="flex justify-between items-center mb-8 p-10 bg-base-100">
+        <h1 className="text-3xl font-bold">Road Map</h1>
         <button
           className="bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
           onClick={() => {
