@@ -9,6 +9,7 @@ function Tasks({
   onAddColumn,
   onDeleteColumn,
   onTaskMove,
+  darkMode
 }) {
   const getStatusTasks = (status) =>
     tasks.filter((task) => task.status === status).sort((a, b) => a.order - b.order);
@@ -42,7 +43,7 @@ function Tasks({
             <div
               ref={provided.innerRef}
             {...provided.droppableProps}
-              className="w-full p-4 my-2 bg-gray-50 rounded-xl text-gray-400 text-center"
+              className="w-full p-4 my-2 bg-white text-black rounded-xl text-center"
           >
               No tasks
               {provided.placeholder}
@@ -154,7 +155,7 @@ function Tasks({
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className="overflow-x-auto pb-4">
-        <div className="flex gap-6 p-7">
+        <div   className="flex gap-6 p-7">
           {columns.map((status, idx) => (
             <div key={idx} className="min-w-[300px]">
               <div className="flex justify-between items-center mb-3">
@@ -168,7 +169,7 @@ function Tasks({
                         : "bg-green-500"
                     }`}
                   ></div>
-                  <h2 className="font-medium text-gray-700 uppercase">
+                  <h2 className="font-medium uppercase">
                     {status} ({getStatusTasks(status).length})
                   </h2>
                 </div>
