@@ -113,7 +113,7 @@ function PlatformLaunch() {
       <div className="flex justify-between items-center mb-8 p-10 bg-white">
         <h1 className="text-3xl font-bold text-gray-800">Platform Launch</h1>
         <button
-          className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
+          className="bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
           onClick={() => {
             setEditingTask(null);
             setShowModal(true);

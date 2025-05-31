@@ -2,15 +2,15 @@ import React from "react"
 import Navbar from "../components/Navbar"
 import { Outlet } from "react-router-dom"
 
-function MainLayout() {
+function MainLayout({ darkMode, toggleTheme }) {
   return (
-    <div>
-      <div className="flex bg-[#E4EBFA]">
-          <Navbar />
-        <div className="flex-1 bg-gray-100">
-            <div className="h-[97px] bg-[#ffffff]">
-                <Outlet />
-            </div>
+    <div className="min-h-screen w-full bg-base-200">
+      <div className="flex">
+        <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
+        <div className="flex-1 bg-base-100">
+          <div className="h-[97px]">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>

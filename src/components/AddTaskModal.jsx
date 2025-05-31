@@ -101,10 +101,19 @@ function AddTaskModal({ onClose, onCreate, columns = [], taskToEdit }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
-      <div className="bg-white rounded-xl p-6 w-full max-w-md">
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4"
+      style={{ backdropFilter: "blur(2px)" }}
+    >
+      <div 
+        className="rounded-xl p-6 w-full max-w-md"
+        style={{
+          backgroundColor: "var(--color-card-bg)",
+          color: "var(--color-text)",
+        }}
+      >
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gray-800">
+          <h2 className="text-xl font-bold">
             {taskToEdit ? "Edit Task" : "Add New Task"}
           </h2>
           <button
@@ -112,7 +121,8 @@ function AddTaskModal({ onClose, onCreate, columns = [], taskToEdit }) {
               resetForm();
               onClose();
             }}
-            className="text-gray-400 hover:text-gray-600"
+            className="text-gray-400 hover:text-gray-600 transition"
+            style={{ color: "var(--color-text-muted)" }}
           >
             ✕
           </button>
@@ -120,16 +130,24 @@ function AddTaskModal({ onClose, onCreate, columns = [], taskToEdit }) {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label 
+              className="block text-sm font-medium mb-1"
+              style={{ color: "var(--color-text-muted)" }}
+            >
               Title <span className="text-red-500">*</span>
             </label>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Take coffee break"
-              className={`w-full px-3 py-2 border ${
+              className={`w-full px-3 py-2 rounded-md focus:outline-none focus:ring-2 ${
                 errors.title ? "border-red-500" : "border-gray-300"
-              } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+              }`}
+              style={{
+                backgroundColor: "var(--color-input-bg)",
+                color: "var(--color-text)",
+                border: errors.title ? "1px solid #ef4444" : "1px solid var(--color-border)"
+              }}
             />
             {errors.title && (
               <p className="mt-1 text-sm text-red-500">{errors.title}</p>
@@ -137,20 +155,31 @@ function AddTaskModal({ onClose, onCreate, columns = [], taskToEdit }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label 
+              className="block text-sm font-medium mb-1"
+              style={{ color: "var(--color-text-muted)" }}
+            >
               Description
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="e.g. Description..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 rounded-md focus:outline-none focus:ring-2"
               rows="3"
+              style={{
+                backgroundColor: "var(--color-input-bg)",
+                color: "var(--color-text)",
+                border: "1px solid var(--color-border)"
+              }}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label 
+              className="block text-sm font-medium mb-1"
+              style={{ color: "var(--color-text-muted)" }}
+            >
               Subtasks
             </label>
             <div className="space-y-2">
@@ -160,17 +189,21 @@ function AddTaskModal({ onClose, onCreate, columns = [], taskToEdit }) {
                     value={st.text}
                     onChange={(e) => handleSubtaskChange(index, e.target.value)}
                     placeholder="e.g. Make coffee"
-                    className={`flex-1 px-3 py-2 border ${
-                      errors[`subtask-${index}`]
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    className={`flex-1 px-3 py-2 rounded-md focus:outline-none focus:ring-2 ${
+                      errors[`subtask-${index}`] ? "border-red-500" : "border-gray-300"
+                    }`}
+                    style={{
+                      backgroundColor: "var(--color-input-bg)",
+                      color: "var(--color-text)",
+                      border: errors[`subtask-${index}`] ? "1px solid #ef4444" : "1px solid var(--color-border)"
+                    }}
                   />
                   <button
                     type="button"
                     onClick={() => removeSubtask(index)}
                     className="text-gray-400 hover:text-red-500 transition"
                     aria-label="Remove subtask"
+                    style={{ color: "var(--color-text-muted)" }}
                   >
                     ✕
                   </button>
@@ -188,20 +221,32 @@ function AddTaskModal({ onClose, onCreate, columns = [], taskToEdit }) {
             <button
               type="button"
               onClick={addSubtask}
-              className="mt-2 w-full py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition"
+              className="mt-2 w-full py-2 rounded-md transition font-medium"
+              style={{
+                backgroundColor: "var(--color-button-secondary-bg)",
+                color: "var(--color-primary)",
+              }}
             >
               + Add New Subtask
             </button>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label 
+              className="block text-sm font-medium mb-1"
+              style={{ color: "var(--color-text-muted)" }}
+            >
               Status <span className="text-red-500">*</span>
             </label>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 rounded-md focus:outline-none focus:ring-2"
+              style={{
+                backgroundColor: "var(--color-input-bg)",
+                color: "var(--color-text)",
+                border: "1px solid var(--color-border)"
+              }}
               required
             >
               {columns.map((col, i) => (
@@ -214,7 +259,10 @@ function AddTaskModal({ onClose, onCreate, columns = [], taskToEdit }) {
 
           <button
             type="submit"
-            className="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+            className="w-full py-2 text-white rounded-md hover:bg-blue-700 transition font-medium"
+            style={{
+              backgroundColor: "var(--color-primary)",
+            }}
           >
             {taskToEdit ? "Save Changes" : "Create Task"}
           </button>

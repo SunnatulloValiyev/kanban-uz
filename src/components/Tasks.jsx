@@ -16,14 +16,14 @@ function Tasks({
   const handleDragEnd = (result) => {
     if (!result.destination) return;
     
-    const { source, destination } = result;
+  const { source, destination } = result;
     
     if (source.droppableId === destination.droppableId && 
         source.index === destination.index) {
       return;
     }
 
-    if (onTaskMove) {
+  if (onTaskMove) {
       onTaskMove(
         result.draggableId, 
         source.droppableId, 
@@ -41,9 +41,9 @@ function Tasks({
           {(provided) => (
             <div
               ref={provided.innerRef}
-              {...provided.droppableProps}
+            {...provided.droppableProps}
               className="w-full p-4 my-2 bg-gray-50 rounded-xl text-gray-400 text-center"
-            >
+          >
               No tasks
               {provided.placeholder}
             </div>
@@ -56,7 +56,7 @@ function Tasks({
       <Droppable droppableId={status}>
         {(provided) => (
           <div
-            ref={provided.innerRef}
+          ref={provided.innerRef}
             {...provided.droppableProps}
             className="space-y-3"
           >
@@ -75,7 +75,7 @@ function Tasks({
                       {task.title}
                     </h3>
                     <p className="text-sm text-gray-500 mt-1 group-hover:text-[#A8A4FF] transition-colors">
-                      {`${task.subtasks?.filter((st) => st.completed).length || 0} of ${
+                    {`${task.subtasks?.filter((st) => st.completed).length || 0} of ${
                         task.subtasks?.length || 0
                       } subtasks`}
                     </p>
@@ -85,7 +85,7 @@ function Tasks({
                         onClick={() => onEditTask && onEditTask(task)} 
                         aria-label="Edit"
                       >
-                        <img
+                      <img
                           className="cursor-pointer hover:opacity-70 transition-opacity"
                           src="./svg/edit.svg"
                           alt="edit"
@@ -99,7 +99,7 @@ function Tasks({
                       >
                         <img
                           className="cursor-pointer hover:opacity-70 transition-opacity"
-                          src=".x/svg/delete.svg"
+                          src="./svg/delete.svg"
                           alt="delete"
                           width={20}
                           height={20}
