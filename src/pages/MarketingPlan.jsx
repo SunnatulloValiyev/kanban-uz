@@ -92,15 +92,17 @@ function MarketingPlan() {
       if (task.status === toCol && task.id === movingTask.id) {
         return { ...task, order: toIdx };
       }
-      if (task.status === toCol && task.id !== movingTask.id) {
-        if (task.order >= toIdx) {
-          return { ...task, order: task.order + 1 };
-        }
-      }
+
       if (task.status === fromCol && task.id !== movingTask.id) {
         if (task.order > fromIdx) {
           return { ...task, order: task.order - 1 };
         }
+
+          if (task.status === toCol && task.id !== movingTask.id) {
+        if (task.order >= toIdx) {
+          return { ...task, order: task.order + 1 };
+        }
+      }
       }
       return task;
     });
