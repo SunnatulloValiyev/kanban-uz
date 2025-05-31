@@ -189,7 +189,7 @@ function Tasks({
 
           {columns.length < 5 && (
             <div
-              className="min-w-[300px] h-20 bg-base-100 rounded-xl mt-8 flex items-center justify-center cursor-pointer hover:bg-gray-950 transition"
+              className="min-w-[300px] h-20 bg-base-100 rounded-xl mt-8 flex items-center justify-center cursor-pointer hover:bg-violet-400 transition"
               onClick={handleAddColumn}
             >
               <span className="text-blue-600 font-medium">+ Add New Column</span>
