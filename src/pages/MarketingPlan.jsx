@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AddTaskModal from "../components/AddTaskModal";
 import Tasks from "../components/Tasks";
+import Navbar from "../components/Navbar";
 
 function MarketingPlan() {
   const [showModal, setShowModal] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
   const [allTasks, setAllTasks] = useState([]);
   const [columns, setColumns] = useState(["TODO", "DOING", "DONE"]);
   const [editingTask, setEditingTask] = useState(null);
@@ -15,9 +17,7 @@ function MarketingPlan() {
     if (savedTasks) setAllTasks(JSON.parse(savedTasks));
     if (savedColumns) {
       const parsedColumns = JSON.parse(savedColumns);
-      setColumns(
-        parsedColumns.length > 0 ? parsedColumns : ["TODO", "DOING", "DONE"]
-      );
+      setColumns(parsedColumns.length > 0 ? parsedColumns : ["TODO", "DOING", "DONE"]);
     }
   }, []);
 
@@ -119,12 +119,18 @@ function MarketingPlan() {
   };
 
   return (
-    <div className="min-h-screen bg-base-300">
+    <div className="relative min-h-screen bg-base-300">
+      {showNavbar && (
+        <div className="fixed top-0 left-0 z-50 w-[300px] h-full bg-base-100 shadow-lg">
+          <Navbar darkMode={false} toggleTheme={() => {}} />
+        </div>
+      )}
+
       <div className="flex justify-between items-center mb-8 p-10 bg-base-100">
         <h1 className="text-3xl font-bold">Marketing Plan</h1>
         <div className="flex gap-6">
           <button
-            className="bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
+            className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
             onClick={() => {
               setEditingTask(null);
               setShowModal(true);
@@ -132,8 +138,11 @@ function MarketingPlan() {
           >
             + Add New Task
           </button>
-          <button className="cursor-pointer">
-            <img src="public/svg/burger.svg" alt="burger" />
+          <button
+            className="cursor-pointer"
+            onClick={() => setShowNavbar(!showNavbar)}
+          >
+            <img src="/svg/burger.svg" alt="burger" />
           </button>
         </div>
       </div>

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import AddTaskModal from "../components/AddTaskModal";
 import Tasks from "../components/Tasks";
+import Navbar from "../components/Navbar";
 
 function PlatformLaunch() {
   const [showModal, setShowModal] = useState(false);
   const [allTasks, setAllTasks] = useState([]);
   const [columns, setColumns] = useState(["TODO", "DOING", "DONE"]);
   const [editingTask, setEditingTask] = useState(null);
+  const [showNavbar, setShowNavbar] = useState(false);
 
   useEffect(() => {
     const savedTasks = localStorage.getItem("platformLaunchTasks");
@@ -15,7 +17,9 @@ function PlatformLaunch() {
     if (savedTasks) setAllTasks(JSON.parse(savedTasks));
     if (savedColumns) {
       const parsedColumns = JSON.parse(savedColumns);
-      setColumns(parsedColumns.length > 0 ? parsedColumns : ["TODO", "DOING", "DONE"]);
+      setColumns(
+        parsedColumns.length > 0 ? parsedColumns : ["TODO", "DOING", "DONE"]
+      );
     }
   }, []);
 
@@ -28,12 +32,16 @@ function PlatformLaunch() {
     if (editingTask) {
       setAllTasks((prev) =>
         prev.map((task) =>
-          task.id === editingTask.id ? { ...newTask, id: editingTask.id, order: task.order } : task
+          task.id === editingTask.id
+            ? { ...newTask, id: editingTask.id, order: task.order }
+            : task
         )
       );
       setEditingTask(null);
     } else {
-      const tasksInColumn = allTasks.filter((task) => task.status === newTask.status);
+      const tasksInColumn = allTasks.filter(
+        (task) => task.status === newTask.status
+      );
       setAllTasks([
         ...allTasks,
         { ...newTask, id: Date.now(), order: tasksInColumn.length },
@@ -60,7 +68,9 @@ function PlatformLaunch() {
       alert("Cannot delete basic columns");
       return;
     }
-    if (window.confirm(`Delete "${columnToDelete}" column and all its tasks?`)) {
+    if (
+      window.confirm(`Delete "${columnToDelete}" column and all its tasks?`)
+    ) {
       setColumns(columns.filter((col) => col !== columnToDelete));
       setAllTasks(allTasks.filter((task) => task.status !== columnToDelete));
     }
@@ -110,19 +120,32 @@ function PlatformLaunch() {
 
   return (
     <div className="min-h-screen bg-base-300">
+      {showNavbar && (
+        <div className="fixed top-0 left-0 z-50 w-[300px] h-full bg-base-100 shadow-lg">
+          <Navbar darkMode={false} toggleTheme={() => {}} />
+        </div>
+      )}
+
       <div className="flex justify-between items-center mb-8 p-10 bg-base-100">
         <h1 className="text-3xl font-bold">Platform Launch</h1>
-        <button
-          className="bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
-          onClick={() => {
-            setEditingTask(null);
-            setShowModal(true);
-          }}
-        >
-          + Add New Task
-        </button>
+        <div className="flex gap-6">
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
+            onClick={() => {
+              setEditingTask(null);
+              setShowModal(true);
+            }}
+          >
+            + Add New Task
+          </button>
+          <button
+            className="cursor-pointer"
+            onClick={() => setShowNavbar(!showNavbar)}
+          >
+            <img src="/svg/burger.svg" alt="burger" />
+          </button>
+        </div>
       </div>
-
       {showModal && (
         <AddTaskModal
           onClose={() => {
