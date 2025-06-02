@@ -9,7 +9,6 @@ function Tasks({
   onAddColumn,
   onDeleteColumn,
   onTaskMove,
-  darkMode
 }) {
   const getStatusTasks = (status) =>
     tasks.filter((task) => task.status === status).sort((a, b) => a.order - b.order);
@@ -155,9 +154,9 @@ function Tasks({
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className="overflow-x-auto pb-4">
-        <div   className="flex gap-6 p-7">
+        <div   className="gap-6 p-7 grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {columns.map((status, idx) => (
-            <div key={idx} className="min-w-[300px]">
+            <div key={idx} className="max-w-[300px] w-full">
               <div className="flex justify-between items-center mb-3">
                 <div className="flex items-center gap-2">
                   <div
@@ -189,7 +188,7 @@ function Tasks({
 
           {columns.length < 5 && (
             <div
-              className="min-w-[300px] h-20 bg-base-100 rounded-xl mt-8 flex items-center justify-center cursor-pointer hover:bg-violet-400 transition"
+              className="max-w-[300px] w-full h-20 bg-base-100 rounded-xl mt-8 flex items-center justify-center cursor-pointer hover:bg-violet-400 transition"
               onClick={handleAddColumn}
             >
               <span className="text-blue-600 font-medium">+ Add New Column</span>

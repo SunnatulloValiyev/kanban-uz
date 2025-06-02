@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Navbar({ darkMode, toggleTheme }) {
   return (
-    <div className="bg-base-100">
+    <div className="bg-base-100 hidden md:block">
       <div className="pl-8 pt-10">
         <img src="../svg/Group 16.svg" alt="kanban" />
       </div>
