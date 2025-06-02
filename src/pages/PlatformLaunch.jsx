@@ -142,7 +142,7 @@ function PlatformLaunch() {
             className="cursor-pointer"
             onClick={() => setShowNavbar(!showNavbar)}
           >
-            <img src="/svg/burger.svg" alt="burger" />
+            <img src="/svg/burger.svg" />
           </button>
         </div>
       </div>
