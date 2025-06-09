@@ -47,7 +47,7 @@ function Navbar({ darkMode, toggleTheme }) {
         </NavLink>
       </nav>
 
-      <div className="flex justify-around items-center bg-base-200 w-[251px] h-[48px] ml-8 mb-8 rounded-sm">
+      <div className="flex justify-around items-center bg-base-200 w-[251px] h-[48px] ml-8 mb-37  rounded-sm">
         <img src="./svg/Combined Shape.svg" alt="combined" width={18} height={18}/>
         <input
           type="checkbox"

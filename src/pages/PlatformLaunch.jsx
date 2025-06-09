@@ -138,12 +138,6 @@ function PlatformLaunch() {
           >
             + Add New Task
           </button>
-          <button
-            className="cursor-pointer"
-            onClick={() => setShowNavbar(!showNavbar)}
-          >
-            <img src="/svg/burger.svg" />
-          </button>
         </div>
       </div>
       {showModal && (
